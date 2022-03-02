@@ -43,6 +43,7 @@ internal class RomanNumber : ICloneable, IComparable
     //Конструктор получает представление числа n в римской записи
     public RomanNumber(ushort n)
     {
+        if (!(n > 1)) throw new InvalidDataException();
         value = n;
         romanVal = calcRomanValue(n);
     }
@@ -70,7 +71,7 @@ internal class RomanNumber : ICloneable, IComparable
     public static RomanNumber Div(RomanNumber? n1, RomanNumber? n2)
     {
         if (n1 == null || n2 == null) throw new ArgumentNullException();
-        if (n2.value == 0) throw new RomanNumberException();
+        if (n2.value == 0 || ((ushort)(n1.value / n2.value))==0) throw new RomanNumberException();
         return new RomanNumber((ushort)(n1.value / n2.value));
     }
     //Возвращает строковое представление римского числа
@@ -86,7 +87,7 @@ internal class RomanNumber : ICloneable, IComparable
 
     public int CompareTo(object? obj)
     {
-        if(obj == null) return 1;
+        if (obj == null) return 1;
 
         RomanNumber another = obj as RomanNumber;
 
