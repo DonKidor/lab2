@@ -43,7 +43,7 @@ internal class RomanNumber : ICloneable, IComparable
     //Конструктор получает представление числа n в римской записи
     public RomanNumber(ushort n)
     {
-        if (!(n > 1)) throw new RomanNumberException();
+        if (!(n > 0)) throw new RomanNumberException();
         value = n;
         romanVal = calcRomanValue(n);
     }
